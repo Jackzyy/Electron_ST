@@ -3,12 +3,23 @@ module.exports = {
   env: {
     node: true
   },
-  extends: ["plugin:vue/vue3-essential", "eslint:recommended", "@vue/prettier"],
+  extends: ['plugin:vue/essential', 'eslint:recommended', '@vue/prettier'],
   parserOptions: {
-    parser: "babel-eslint"
+    parser: 'babel-eslint'
   },
   rules: {
-    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off"
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        semi: false,
+        singleQuote: true
+      }
+    ],
+    // 标签属性规则排序
+    'vue/attributes-order': 'error',
+    // 关闭Template只能有一个节点
+    'vue/no-multiple-template-root': 'off'
   }
-};
+}
