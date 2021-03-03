@@ -3,6 +3,7 @@
   <div>{{ computedNum }}</div>
   <el-button @click="add">增加</el-button>
   <el-button @click="reset">重置</el-button>
+  <el-input v-model="number"></el-input>
 </template>
 
 <script>
@@ -10,10 +11,10 @@ import { reactive, toRefs, watch, computed, onMounted } from 'vue'
 export default {
   setup() {
     let obj = reactive({ number: 0 })
-    function add() {
+    const add = () => {
       obj.number++
     }
-    function reset() {
+    const reset = () => {
       obj.number = 0
     }
 

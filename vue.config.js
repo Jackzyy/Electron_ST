@@ -1,4 +1,35 @@
+const path = require('path')
+const resolve = dir => {
+  return path.join(__dirname, dir)
+}
+
 module.exports = {
+  lintOnSave: process.env.NODE_ENV === 'development', // 开发环境开启代码检查
+  productionSourceMap: false, // 打包禁止生成 .map 文件，加快打包速度
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@': resolve('src'),
+        '@a': resolve('src/assets'),
+        '@c': resolve('src/components'),
+        '@v': resolve('src/views'),
+        '@u': resolve('src/utils'),
+        '@i': resolve('src/api')
+      }
+    }
+  },
+  chainWebpack(config) {
+    // 提前预加载提高切换路由的体验
+    config.plugin('preload').tap(() => [
+      {
+        rel: 'preload',
+        fileBlacklist: [/\.map$/, /hot-update\.js$/, /runtime\..*\.js$/],
+        include: 'initial'
+      }
+    ])
+  },
+
+  // Electron 打包配置
   pluginOptions: {
     electronBuilder: {
       nodeIntegration: true,
