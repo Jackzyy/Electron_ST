@@ -1,10 +1,20 @@
 <template>
-  <div class="nav-bar">头部</div>
+  <div class="nav-bar">
+    <Collapsed />
+    <FullScreen />
+  </div>
 </template>
 
 <script>
 import { reactive, toRefs } from 'vue'
+import Collapsed from '@/components/Collapsed'
+import FullScreen from '@/components/FullScreen'
 export default {
+  components: {
+    Collapsed,
+    FullScreen
+  },
+
   setup() {
     const state = reactive({})
 
@@ -17,6 +27,9 @@ export default {
 
 <style lang="scss" scoped>
 .nav-bar {
-  background-color: rgb(124, 104, 104);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 </style>

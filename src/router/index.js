@@ -1,7 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Layout from '@/layout'
+import nestedRouter from './modules/nested'
 
-const routes = [
+/**
+ * 公共路由
+ */
+export const constantRoutes = [
   {
     path: '/',
     redirect: 'home',
@@ -13,12 +17,18 @@ const routes = [
         component: () => import('@/views/Home')
       }
     ]
-  }
+  },
+  nestedRouter
 ]
+
+/**
+ * 异步权限路由
+ */
+export const asyncRoutes = []
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes: constantRoutes
 })
 
 export default router
